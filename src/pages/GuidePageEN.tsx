@@ -97,7 +97,7 @@ export default function GuidePageEN() {
               <div className="flex items-center gap-2">
                 <span className="section-eyebrow"><Icon name="book-open" size={16} />User Guide</span>
               </div>
-              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Patrimoine User Guide
               </h1>
               <p className="mt-3 text-base text-slate-400 leading-relaxed max-w-2xl">
@@ -217,7 +217,7 @@ export default function GuidePageEN() {
               All curves superimposed for a complete overview.
             </p>
 
-            <h3 className="mt-6 text-lg font-bold text-white">Graph Types</h3>
+            <h3 className="mt-6 text-lg font-bold text-primary">Graph Types</h3>
             <p>
               You can visualize cash, fixed assets, and obligations separately, or combine
               all curves in a single graph. Graphs are stored as PNGs in test resources.
@@ -402,7 +402,7 @@ export default function GuidePageEN() {
               a subtitle (prefixed by <code className="inline-code">##</code>) with its own currency.
             </p>
 
-            <h3 className="mt-6 text-lg font-bold text-white">Recurring Income (salary, rent)</h3>
+            <h3 className="mt-6 text-lg font-bold text-primary">Recurring Income (salary, rent)</h3>
             <CodeExample filename="operations-revenu.cas.md" code={`# Operations
 ## Salary, Dates:today, currency in Ar
 * \`monthlySalary\` Dates:today, enter 500000Ar to Cash & Treasury:checkingAccount, until undetermined date every 31st of the month`} />
@@ -410,12 +410,12 @@ export default function GuidePageEN() {
               Complete format: <code className="inline-code">* \`id\` date, enter amountCurrency to Cash & Treasury:account, until dateEnd every day of the month</code>
             </p>
 
-            <h3 className="mt-6 text-lg font-bold text-white">Recurring Expense (subscription, rent)</h3>
+            <h3 className="mt-6 text-lg font-bold text-primary">Recurring Expense (subscription, rent)</h3>
             <CodeExample filename="operations-depense.cas.md" code={`## Charges, Dates:today, currency in Ar
 * \`internetSubscription\` Dates:today, withdraw 40000Ar from Cash & Treasury:checkingAccount, until undetermined date every 15th of the month
 * \`rent\` Dates:today, withdraw 300000Ar from Cash & Treasury:checkingAccount, until 31 of 12-2030 every 5th of the month`} />
 
-            <h3 className="mt-6 text-lg font-bold text-white">Debt Repayment</h3>
+            <h3 className="mt-6 text-lg font-bold text-primary">Debt Repayment</h3>
             <CodeExample code={`* \`repayment\` Dates:today, repay Debts:bankLoan from Cash & Treasury:checkingAccount with Receivables:clientInvoice from Cash & Treasury:checkingAccount valued at 500000Ar`} />
 
             <Callout variant="tip" title="Periodic Operations">
@@ -454,18 +454,18 @@ export default function GuidePageEN() {
               The section <code className="inline-code"># Tracking</code> allows modifying goals
               and correcting discrepancies between the simulation and reality.
             </p>
-            <h3 className="mt-4 text-lg font-bold text-white">Define a goal</h3>
+            <h3 className="mt-4 text-lg font-bold text-primary">Define a goal</h3>
             <CodeExample filename="suivi.cas.md" code={`# Tracking
 * \`futureGoal\` 01 of 06-2026, goal of 2000000Ar for Cash & Treasury:checkingAccount`} />
 
-            <h3 className="mt-4 text-lg font-bold text-white">Correct a discrepancy — The standard correction</h3>
+            <h3 className="mt-4 text-lg font-bold text-primary">Correct a discrepancy — The standard correction</h3>
             <p>
               When reality differs from the simulation, use a correction to
               adjust the value of an account. This is the most common form:
             </p>
             <CodeExample filename="correction.cas.md" code={`* \`correction1\` 15 of 03-2025, correct 540000Ar in Cash & Treasury:checkingAccount`} />
 
-            <h3 className="mt-4 text-lg font-bold text-white">Other forms of corrections</h3>
+            <h3 className="mt-4 text-lg font-bold text-primary">Other forms of corrections</h3>
             <p>
               There are several types of corrections for different situations:
             </p>
@@ -624,7 +624,7 @@ export default function GuidePageEN() {
                 <div key={d.code} className="card-float card-hover p-6" style={{ animationDelay: `${i * 0.5}s` }}>
                   <div className="mb-2 flex items-center gap-2">
                     <span className="text-2xl font-bold" style={{ color: d.color }}>{d.symbole}</span>
-                    <span className="text-lg font-semibold text-white">{d.nom}</span>
+                    <span className="text-lg font-semibold text-primary">{d.nom}</span>
                   </div>
                   <div className="space-y-1 text-sm text-slate-400">
                     <div>ISO Code: {d.code}</div>
@@ -676,7 +676,7 @@ export default function GuidePageEN() {
               accounts shared between cases.
             </p>
 
-            <h3 className="mt-6 text-lg font-bold text-white">The Three File Types</h3>
+            <h3 className="mt-6 text-lg font-bold text-primary">The Three File Types</h3>
             <div className="my-4 grid gap-4 sm:grid-cols-3">
               <div className="card card-hover p-4">
                 <span className="font-mono text-sm font-semibold text-blue-300">.cas.md</span>
@@ -697,7 +697,7 @@ export default function GuidePageEN() {
           <Section id="glossaire" eyebrow="Reference" title="Glossary of Technical Terms">
             <div className="space-y-6">
               <div id="patrilang" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">PatriLang</h3>
+                <h3 className="text-base font-bold text-primary">PatriLang</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   The domain-specific language (DSL) of Patrimoine. It allows describing assets
                   declaratively in a text file without writing Java code. PatriLang files use
@@ -707,7 +707,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="tresorerie" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Cash & Treasury</h3>
+                <h3 className="text-base font-bold text-primary">Cash & Treasury</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   Immediately available money: checking accounts, savings, cash. It is the most liquid
                   asset aggregate.
@@ -715,7 +715,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="immobilisation" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Fixed Asset</h3>
+                <h3 className="text-base font-bold text-primary">Fixed Asset</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   Tangible (house, car, land) or intangible (software, patent) goods that have economic
                   value but are not easily convertible into cash.
@@ -723,7 +723,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="obligation" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Obligation</h3>
+                <h3 className="text-base font-bold text-primary">Obligation</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   Groups together debts (what you owe) and receivables (what is owed to you).
                   Debts decrease your net worth, receivables increase it.
@@ -731,7 +731,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="dette" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Debt</h3>
+                <h3 className="text-base font-bold text-primary">Debt</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   A sum of money you owe someone (bank loan, credit, borrowing). It is a liability
                   that reduces your net worth.
@@ -739,7 +739,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="creance" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Receivable</h3>
+                <h3 className="text-base font-bold text-primary">Receivable</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   A sum of money someone owes you (loan to a friend, unpaid invoice, due salary).
                   It is an asset that increases your net worth.
@@ -747,7 +747,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="zfja" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">ZFJA</h3>
+                <h3 className="text-base font-bold text-primary">ZFJA</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   <strong>Zero Daily Flows until Today.</strong> Policy consisting of regularly
                   updating your specification so that there is no pending daily flow. If ZFJA is achieved,
@@ -756,7 +756,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="zfi" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">ZFI</h3>
+                <h3 className="text-base font-bold text-primary">ZFI</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   <strong>Zero Impossible Flows.</strong> Policy consisting of planning the evolution
                   of your assets so that cash can always cover all operations. If ZFI is achieved, you can
@@ -765,7 +765,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="flux-journalier" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Daily Flow</h3>
+                <h3 className="text-base font-bold text-primary">Daily Flow</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   The list of operations that took place from the specification date to the projection date.
                   By regularly tracking this list and updating your specification, you can achieve the ZFJA policy.
@@ -773,7 +773,7 @@ export default function GuidePageEN() {
               </div>
 
               <div id="flux-impossible" className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm">
-                <h3 className="text-base font-bold text-white">Impossible Flow</h3>
+                <h3 className="text-base font-bold text-primary">Impossible Flow</h3>
                 <p className="mt-2 text-sm text-slate-400">
                   An operation that would make an account balance go negative. For example, a withdrawal
                   of 500,000 Ar from an account that only has 100,000 Ar. The system automatically
@@ -786,7 +786,7 @@ export default function GuidePageEN() {
           {/* Next steps */}
           <Reveal className="mt-12 mb-16">
             <div className="flex flex-col items-center gap-4 rounded-2xl border border-white/[0.06] bg-gradient-to-br from-blue-500/5 to-transparent p-8 text-center backdrop-blur-sm">
-              <h3 className="text-xl font-bold text-white">Ready to start?</h3>
+              <h3 className="text-xl font-bold text-primary">Ready to start?</h3>
               <p className="text-sm text-slate-400 max-w-lg">
                 You now have all the keys to use Patrimoine. Create your first case file and get started!
               </p>

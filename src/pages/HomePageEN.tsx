@@ -109,7 +109,7 @@ export default function HomePageEN() {
                   </div>
                 ))}
                 {/* Overlay gradient */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 via-transparent to-transparent" style={{ background: `linear-gradient(to top, color-mix(in srgb, var(--surface) 60%, transparent), transparent, transparent)` }} />
                 {/* Label */}
                 <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between">
                   <span className="rounded-lg bg-blue-500/20 px-3 py-1.5 text-xs font-semibold text-blue-200 backdrop-blur-sm">
@@ -171,7 +171,7 @@ export default function HomePageEN() {
                 <div className="mb-4 transition-transform duration-300 group-hover:scale-110" style={{ color: f.color }}>
                   <Icon name={f.icon} size={32} />
                 </div>
-                <h3 className="text-base font-semibold text-white">{f.title}</h3>
+                <h3 className="text-base font-semibold text-primary">{f.title}</h3>
                 <p className="mt-2 text-sm text-slate-400 leading-relaxed">{f.description}</p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ color: f.color }}>
                   Discover
@@ -232,7 +232,7 @@ export default function HomePageEN() {
                       <item.icon size={16} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-white">{item.title}</h4>
+                      <h4 className="text-sm font-semibold text-primary">{item.title}</h4>
                       <p className="mt-1 text-xs text-slate-400 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>

@@ -88,7 +88,7 @@ export default function AuthPage() {
           <div className="flex justify-center mb-4">
             <Logo size={48} />
           </div>
-          <h1 className="text-2xl font-extrabold text-white">
+          <h1 className="text-2xl font-extrabold text-primary">
             {isLogin ? t.loginTitle : t.signupTitle}
           </h1>
           <p className="mt-2 text-sm text-slate-400">
@@ -109,7 +109,7 @@ export default function AuthPage() {
                     placeholder={t.namePlaceholder}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm text-primary placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
                   />
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function AuthPage() {
                   placeholder={t.emailPlaceholder}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm text-primary placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
                 />
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function AuthPage() {
                   placeholder={t.passPlaceholder}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-10 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-10 text-sm text-primary placeholder-slate-500 outline-none transition-all duration-300 focus:border-blue-400/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-400/20"
                 />
                 <button
                   type="button"

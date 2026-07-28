@@ -93,7 +93,7 @@ export default function Patrimoine3DViewer() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-6 card p-5">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="font-semibold text-white">{selected.nom}</h4>
+              <h4 className="font-semibold text-primary">{selected.nom}</h4>
               <p className="text-sm text-slate-400">{AGREGAT_LABELS[selected.agregat].label} · {selected.type}</p>
             </div>
             <button onClick={() => setSelected(null)} className="text-slate-500 transition-colors hover:text-white">✕</button>
@@ -101,23 +101,23 @@ export default function Patrimoine3DViewer() {
           <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div>
               <div className="text-xs text-slate-500">Valeur actuelle</div>
-              <div className="font-semibold text-white">{formatAr(convertToAriary(projectPossession(selected, currentDate), selected.devise, currentDate))} Ar</div>
+              <div className="font-semibold text-primary">{formatAr(convertToAriary(projectPossession(selected, currentDate), selected.devise, currentDate))} Ar</div>
             </div>
             {selected.tauxAppreciationAnnuel !== undefined && (
               <div>
                 <div className="text-xs text-slate-500">Appréciation</div>
-                <div className="font-semibold text-white">{selected.tauxAppreciationAnnuel > 0 ? '+' : ''}{(selected.tauxAppreciationAnnuel * 100).toFixed(0)}%/an</div>
+                <div className="font-semibold text-primary">{selected.tauxAppreciationAnnuel > 0 ? '+' : ''}{(selected.tauxAppreciationAnnuel * 100).toFixed(0)}%/an</div>
               </div>
             )}
             {selected.children && selected.children.length > 0 && (
               <div>
                 <div className="text-xs text-slate-500">Flux actifs</div>
-                <div className="font-semibold text-white">{selected.children.length}</div>
+                <div className="font-semibold text-primary">{selected.children.length}</div>
               </div>
             )}
             <div>
               <div className="text-xs text-slate-500">Devise</div>
-              <div className="font-semibold text-white">{selected.devise}</div>
+              <div className="font-semibold text-primary">{selected.devise}</div>
             </div>
           </div>
         </motion.div>

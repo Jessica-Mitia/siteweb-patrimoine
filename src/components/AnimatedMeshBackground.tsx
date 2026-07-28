@@ -1,15 +1,50 @@
-/**
- * AnimatedMeshBackground
- * Renders a fixed full-screen animated background with:
- * 1. A conic mesh gradient that slowly rotates and shifts
- * 2. Flowing wave shapes at the bottom
- * 3. Hazy drifting color blobs
- * 4. A subtle dot grid overlay
- */
+import { useTheme } from '../hooks/useTheme';
+
 export default function AnimatedMeshBackground() {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+
+  if (isLight) {
+    return (
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: 'var(--surface)' }}>
+        <div
+          className="absolute left-1/2 top-1/2 h-[150vmax] w-[150vmax] -translate-x-1/2 -translate-y-1/2 animate-mesh-shift opacity-10"
+          style={{
+            background:
+              'conic-gradient(from 0deg at 50% 50%, #bfdbfe 0deg, #93c5fd 60deg, #60a5fa 120deg, #ddd0b8 180deg, #93c5fd 240deg, #c4b08a 300deg, #bfdbfe 360deg)',
+            filter: 'blur(120px)',
+          }}
+        />
+        <div
+          className="absolute -left-32 top-0 h-[600px] w-[600px] rounded-full animate-haze-drift"
+          style={{
+            background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+        <div
+          className="absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full animate-haze-drift"
+          style={{
+            background: 'radial-gradient(circle, rgba(196,176,138,0.08) 0%, transparent 70%)',
+            filter: 'blur(90px)',
+            animationDelay: '8s',
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-1/3 h-[450px] w-[450px] rounded-full animate-haze-drift"
+          style={{
+            background: 'radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+            animationDelay: '15s',
+          }}
+        />
+        <div className="absolute inset-0 dot-pattern opacity-20" />
+      </div>
+    );
+  }
+
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-ink-950">
-      {/* Conic mesh gradient — slow rotating color field */}
       <div
         className="absolute left-1/2 top-1/2 h-[150vmax] w-[150vmax] -translate-x-1/2 -translate-y-1/2 animate-mesh-shift opacity-30"
         style={{
@@ -18,8 +53,6 @@ export default function AnimatedMeshBackground() {
           filter: 'blur(120px)',
         }}
       />
-
-      {/* Hazy drifting blobs */}
       <div
         className="absolute -left-32 top-0 h-[600px] w-[600px] rounded-full animate-haze-drift"
         style={{
@@ -43,8 +76,6 @@ export default function AnimatedMeshBackground() {
           animationDelay: '15s',
         }}
       />
-
-      {/* Big flowing waves at the bottom */}
       <svg
         className="absolute bottom-0 left-0 w-[200%] animate-wave-1"
         viewBox="0 0 1440 320"
@@ -96,11 +127,7 @@ export default function AnimatedMeshBackground() {
           d="M0,240 C360,180 600,280 840,220 C1080,160 1200,240 1440,200 L1440,320 L0,320 Z"
         />
       </svg>
-
-      {/* Dot grid overlay for texture */}
       <div className="absolute inset-0 dot-pattern opacity-40" />
-
-      {/* Vignette to keep content readable */}
       <div
         className="absolute inset-0"
         style={{
@@ -111,5 +138,3 @@ export default function AnimatedMeshBackground() {
     </div>
   );
 }
-
-

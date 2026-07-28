@@ -17,7 +17,7 @@ export default function NavItem({ item, current, hoveredId, onClick, onHover }: 
       onClick={() => onClick(item.id)}
       onMouseEnter={() => onHover(item.id)}
       className={`relative z-10 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-300 ${
-        isActive ? 'text-white' : 'text-slate-400'
+        isActive ? 'text-primary' : 'text-slate-400'
       }`}
     >
       <span className="relative inline-block">

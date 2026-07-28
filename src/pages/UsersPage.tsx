@@ -31,7 +31,7 @@ export default function UsersPage() {
                   Page 1
                 </span>
               </div>
-              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Pour les futurs utilisateurs
               </h1>
               <p className="mt-3 text-base text-slate-400 leading-relaxed max-w-2xl">
@@ -189,7 +189,7 @@ patrimoine.ajouterPossession(salaireEnAttente);`}
                     <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${t.bg} border ${t.border}`}>
                       <t.icon className={`h-5 w-5 ${t.color}`} />
                     </div>
-                    <code className="font-mono text-sm font-semibold text-white">{t.name}</code>
+                    <code className="font-mono text-sm font-semibold text-primary">{t.name}</code>
                   </div>
                   <p className="mt-3 text-sm text-slate-400 leading-relaxed">{t.desc}</p>
                   <p className="mt-2 text-xs text-slate-600">{t.example}</p>

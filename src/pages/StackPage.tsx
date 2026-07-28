@@ -26,7 +26,7 @@ export default function StackPage() {
                   Page 2
                 </span>
               </div>
-              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Stack technique
               </h1>
               <p className="mt-3 text-base text-slate-400 leading-relaxed max-w-2xl">
@@ -51,7 +51,7 @@ export default function StackPage() {
                       <span className="font-mono text-xs text-slate-600">{i + 1}</span>
                       <layer.icon className={`h-5 w-5 ${layer.color}`} />
                       <div className="flex-1">
-                        <span className="text-sm font-semibold text-white">{layer.name}</span>
+                        <span className="text-sm font-semibold text-primary">{layer.name}</span>
                         <span className="ml-2 text-xs text-slate-500">— {layer.desc}</span>
                       </div>
                     </div>
@@ -165,9 +165,9 @@ WS         : [ \\t\\r\\n]+ -> skip ;`}
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-white/10 bg-white/[0.03]">
-                    <th className="px-4 py-2.5 text-left font-semibold text-white">Classe</th>
-                    <th className="px-4 py-2.5 text-left font-semibold text-white">Rôle</th>
-                    <th className="px-4 py-2.5 text-left font-semibold text-white">Projection</th>
+                    <th className="px-4 py-2.5 text-left font-semibold text-primary">Classe</th>
+                    <th className="px-4 py-2.5 text-left font-semibold text-primary">Rôle</th>
+                    <th className="px-4 py-2.5 text-left font-semibold text-primary">Projection</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
@@ -216,7 +216,7 @@ WS         : [ \\t\\r\\n]+ -> skip ;`}
               <div className="card card-hover p-5">
                 <div className="flex items-center gap-2">
                   <Database className="h-5 w-5 text-jtr-cyan" />
-                  <code className="font-mono text-sm font-semibold text-white">ZFJA</code>
+                  <code className="font-mono text-sm font-semibold text-primary">ZFJA</code>
                 </div>
                 <p className="mt-3 text-sm text-slate-400 leading-relaxed">
                   Zone de recoupement portant sur les flux journaliers
@@ -227,7 +227,7 @@ WS         : [ \\t\\r\\n]+ -> skip ;`}
               <div className="card card-hover p-5">
                 <div className="flex items-center gap-2">
                   <Network className="h-5 w-5 text-jtr-cyan" />
-                  <code className="font-mono text-sm font-semibold text-white">ZFI</code>
+                  <code className="font-mono text-sm font-semibold text-primary">ZFI</code>
                 </div>
                 <p className="mt-3 text-sm text-slate-400 leading-relaxed">
                   Zone de recoupement portant sur les flux d'investissement.

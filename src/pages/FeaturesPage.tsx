@@ -54,7 +54,7 @@ export default function FeaturesPage() {
               <div className="flex items-center gap-2">
                 <span className="section-eyebrow"><Code2 className="h-4 w-4" />Stack technique & fonctionnalités</span>
               </div>
-              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Stack technique
               </h1>
               <p className="mt-3 text-base text-slate-400 leading-relaxed max-w-2xl">
@@ -75,11 +75,11 @@ export default function FeaturesPage() {
               <div className="space-y-3">
                 {archLayers.map((layer, i) => (
                   <div key={layer.name}>
-                    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-ink-900/60 px-4 py-3 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]">
+                    <div className="flex items-center gap-3 rounded-xl border border-default px-4 py-3 transition-all duration-300 hover:border-white/20 hover:bg-glass-hover" style={{ backgroundColor: 'color-mix(in srgb, var(--surface-elevated) 60%, transparent)' }}>
                       <span className="font-mono text-xs text-slate-600">{i + 1}</span>
                       <layer.icon className={`h-5 w-5 ${layer.color}`} />
                       <div className="flex-1">
-                        <span className="text-sm font-semibold text-white">{layer.name}</span>
+                        <span className="text-sm font-semibold text-primary">{layer.name}</span>
                         <span className="ml-2 text-xs text-slate-500">— {layer.desc}</span>
                       </div>
                     </div>
@@ -213,7 +213,7 @@ WS         : [ \\t\\r\\n]+ -> skip ;`}
                         <span className="mr-2 inline-flex" style={{ color: AGREGAT_LABELS[pt.agregat].color }}>
                           <Icon name={pt.icon} size={16} />
                         </span>
-                        <span className="font-medium text-white">{pt.label}</span>
+                        <span className="font-medium text-primary">{pt.label}</span>
                       </td>
                       <td className="p-4">
                         <span className="rounded px-2 py-1 text-xs font-medium" style={{ background: `${AGREGAT_LABELS[pt.agregat].color}20`, color: AGREGAT_LABELS[pt.agregat].color }}>{AGREGAT_LABELS[pt.agregat].label}</span>

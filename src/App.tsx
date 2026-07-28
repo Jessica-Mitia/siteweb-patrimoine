@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './hooks/useTheme';
 import AnimatedMeshBackground from './components/AnimatedMeshBackground';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -9,21 +10,23 @@ import AuthPage from './pages/AuthPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <div className="relative min-h-screen">
-        <AnimatedMeshBackground />
-        <Header />
-        <main className="animate-fade-in">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/features" element={<FeaturesPage />} />
-            <Route path="/guide" element={<GuidePage />} />
-            <Route path="/auth" element={<AuthPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <div className="relative min-h-screen">
+          <AnimatedMeshBackground />
+          <Header />
+          <main className="animate-fade-in">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/guide" element={<GuidePage />} />
+              <Route path="/auth" element={<AuthPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

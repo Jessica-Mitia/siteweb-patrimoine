@@ -79,7 +79,7 @@ function ContactForm() {
         value={formData.name}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         required
-        className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
+        className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-primary placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
       />
       <input
         type="email"
@@ -87,7 +87,7 @@ function ContactForm() {
         value={formData.email}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         required
-        className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
+        className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-primary placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
       />
       <textarea
         placeholder={t.message}
@@ -95,7 +95,7 @@ function ContactForm() {
         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
         required
         rows={3}
-        className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
+        className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-primary placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
       />
       <button
         type="submit"
@@ -114,7 +114,7 @@ export default function Footer() {
   const t = footerTranslations[language];
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-ink-950/50">
+    <footer className="relative mt-24 overflow-hidden border-t border-default" style={{ backgroundColor: 'color-mix(in srgb, var(--surface) 50%, transparent)' }}>
       <div
         className="pointer-events-none absolute -top-20 left-1/2 h-40 w-[600px] -translate-x-1/2 rounded-full blur-[100px] opacity-30"
         style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)' }}
@@ -126,7 +126,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5">
               <Logo size={32} />
-              <span className="text-sm font-bold text-white">Patrimoine</span>
+              <span className="text-sm font-bold text-primary">Patrimoine</span>
             </div>
             <p className="mt-3 max-w-sm text-sm text-slate-400 leading-relaxed">
               {t.desc}
@@ -189,7 +189,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-default pt-6 sm:flex-row">
           <p className="text-xs text-slate-600">
             {t.bottom1}
           </p>

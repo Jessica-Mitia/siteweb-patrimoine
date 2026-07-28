@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, GitBranch, ChevronRight } from 'lucide-react';
+import { Menu, X, GitBranch, ChevronRight, Sun, Moon } from 'lucide-react';
 import Logo from './Logo';
 import NavItem from './NavItem';
 import { useLanguage } from '../hooks/useLanguage';
+import { useTheme } from '../hooks/useTheme';
 
 export default function Header() {
   const location = useLocation();
@@ -13,6 +14,7 @@ export default function Header() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage } = useLanguage();
+  const { theme, toggle: toggleTheme } = useTheme();
   const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number; opacity: number }>({
     left: 0, width: 0, opacity: 0,
   });
@@ -54,9 +56,10 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-white/10 bg-ink-950/80 backdrop-blur-2xl'
+          ? 'border-b border-default backdrop-blur-2xl'
           : 'border-b border-transparent bg-transparent'
       }`}
+      style={scrolled ? { backgroundColor: 'color-mix(in srgb, var(--surface) 80%, transparent)' } : undefined}
     >
       <div className="container-doc flex h-16 items-center justify-between">
         <button
@@ -66,7 +69,7 @@ export default function Header() {
           <div className="transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
             <Logo size={36} />
           </div>
-          <span className="text-sm font-bold text-white transition-colors duration-300 group-hover:text-accent-300">
+          <span className="text-sm font-bold text-primary transition-colors duration-300 group-hover:text-accent-300">
             Patrimoine
           </span>
         </button>
@@ -113,6 +116,15 @@ export default function Header() {
             <span>Repo</span>
           </button>
 
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="relative z-10 ml-3 flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:border-blue-400/40 hover:text-white hover:bg-white/10"
+            aria-label={theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'}
+          >
+            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
           {/* Language Toggle Switch */}
           <div className="relative z-10 ml-3 flex items-center gap-0.5 rounded-xl border border-white/10 bg-white/5 p-0.5 text-xs">
             <button
@@ -148,7 +160,7 @@ export default function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-ink-950/95 backdrop-blur-2xl md:hidden">
+        <div className="border-t border-default md:hidden" style={{ backgroundColor: 'color-mix(in srgb, var(--surface) 95%, transparent)', backdropFilter: 'blur(24px)' }}>
           <nav className="container-doc flex flex-col py-3">
             {localizedNavItems.map((item, i) => (
               <button
@@ -157,7 +169,7 @@ export default function Header() {
                 style={{ animationDelay: `${i * 60}ms` }}
                 className={`flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium transition-all duration-300 animate-slide-in-left ${
                   location.pathname === item.id
-                    ? 'bg-gradient-to-r from-blue-500/10 to-transparent text-white border-l-2 border-blue-500'
+                    ? 'bg-gradient-to-r from-blue-500/10 to-transparent text-primary border-l-2 border-blue-500'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
@@ -190,16 +202,16 @@ export default function Header() {
                     language === 'fr'
                       ? 'bg-blue-500 text-white'
                       : 'text-slate-400'
-                  }`}
-                >
-                  FR
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`rounded-lg px-2.5 py-1 font-semibold transition-all duration-300 ${
-                    language === 'en'
-                      ? 'bg-blue-500 text-white'
-                      : 'text-slate-400'
+                    }`}
+                  >
+                    FR
+                  </button>
+                  <button
+                    onClick={() => setLanguage('en')}
+                    className={`rounded-lg px-2.5 py-1 font-semibold transition-all duration-300 ${
+                      language === 'en'
+                        ? 'bg-blue-500 text-white'
+                        : 'text-slate-400'
                   }`}
                 >
                   EN
