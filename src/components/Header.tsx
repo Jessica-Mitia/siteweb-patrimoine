@@ -3,12 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, GitBranch, ChevronRight } from 'lucide-react';
 import Logo from './Logo';
 import NavItem from './NavItem';
-
-const navItems = [
-  { id: '/', label: 'Accueil' },
-  { id: '/features', label: 'Fonctionnalités' },
-  { id: '/guide', label: 'Utilisation' },
-];
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function Header() {
   const location = useLocation();
@@ -17,9 +12,16 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const { language, setLanguage } = useLanguage();
   const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number; opacity: number }>({
     left: 0, width: 0, opacity: 0,
   });
+
+  const localizedNavItems = [
+    { id: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
+    { id: '/features', label: language === 'fr' ? 'Fonctionnalités' : 'Features' },
+    { id: '/guide', label: language === 'fr' ? 'Utilisation' : 'Usage' },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -92,7 +94,7 @@ export default function Header() {
             }}
           />
 
-          {navItems.map((item) => (
+          {localizedNavItems.map((item) => (
             <NavItem
               key={item.id}
               item={item}
@@ -110,6 +112,30 @@ export default function Header() {
             <GitBranch className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
             <span>Repo</span>
           </button>
+
+          {/* Language Toggle Switch */}
+          <div className="relative z-10 ml-3 flex items-center gap-0.5 rounded-xl border border-white/10 bg-white/5 p-0.5 text-xs">
+            <button
+              onClick={() => setLanguage('fr')}
+              className={`rounded-lg px-2 py-1 font-semibold transition-all duration-300 ${
+                language === 'fr'
+                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              FR
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`rounded-lg px-2 py-1 font-semibold transition-all duration-300 ${
+                language === 'en'
+                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              EN
+            </button>
+          </div>
         </nav>
 
         <button
@@ -124,7 +150,7 @@ export default function Header() {
       {mobileOpen && (
         <div className="border-t border-white/10 bg-ink-950/95 backdrop-blur-2xl md:hidden">
           <nav className="container-doc flex flex-col py-3">
-            {navItems.map((item, i) => (
+            {localizedNavItems.map((item, i) => (
               <button
                 key={item.id}
                 onClick={() => handleNav(item.id)}
@@ -150,6 +176,36 @@ export default function Header() {
               </span>
               <ChevronRight className="h-4 w-4 opacity-50" />
             </button>
+
+            {/* Mobile Language Toggle */}
+            <div
+              className="flex items-center justify-between border-t border-white/5 pt-3 mt-2 px-3 animate-slide-in-left"
+              style={{ animationDelay: `${4 * 60}ms` }}
+            >
+              <span className="text-xs text-slate-500 font-medium">Langue / Language</span>
+              <div className="flex items-center gap-0.5 rounded-xl border border-white/10 bg-white/5 p-0.5 text-xs">
+                <button
+                  onClick={() => setLanguage('fr')}
+                  className={`rounded-lg px-2.5 py-1 font-semibold transition-all duration-300 ${
+                    language === 'fr'
+                      ? 'bg-blue-500 text-white'
+                      : 'text-slate-400'
+                  }`}
+                >
+                  FR
+                </button>
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`rounded-lg px-2.5 py-1 font-semibold transition-all duration-300 ${
+                    language === 'en'
+                      ? 'bg-blue-500 text-white'
+                      : 'text-slate-400'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
           </nav>
         </div>
       )}

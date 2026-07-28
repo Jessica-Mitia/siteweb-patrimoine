@@ -2,8 +2,54 @@ import { useState } from 'react';
 import { GitBranch, BookOpen, Send, CheckCircle2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
+import { useLanguage } from '../hooks/useLanguage';
+
+const formTranslations = {
+  fr: {
+    name: 'Votre nom',
+    email: 'Votre email',
+    message: 'Votre message',
+    send: 'Envoyer',
+    success: 'Message envoyé ! Nous vous répondrons bientôt.',
+  },
+  en: {
+    name: 'Your name',
+    email: 'Your email',
+    message: 'Your message',
+    send: 'Send',
+    success: 'Message sent! We will respond shortly.',
+  },
+};
+
+const footerTranslations = {
+  fr: {
+    desc: 'Décrivez, analysez et visualisez votre patrimoine avec une approche holistique.',
+    doc: 'Documentation',
+    features: 'Fonctionnalités',
+    guide: "Guide d'utilisation",
+    resources: 'Ressources',
+    repo: 'Dépôt source',
+    home: 'Accueil',
+    contact: 'Contact',
+    bottom1: 'Documentation Patrimoine · Contenu issu du projet source',
+    bottom2: 'Conçu pour inspirer et faciliter votre navigation',
+  },
+  en: {
+    desc: 'Describe, analyze, and visualize your assets with a holistic approach.',
+    doc: 'Documentation',
+    features: 'Features',
+    guide: 'User Guide',
+    resources: 'Resources',
+    repo: 'Source Repository',
+    home: 'Home',
+    contact: 'Contact',
+    bottom1: 'Patrimoine Documentation · Content from the source project',
+    bottom2: 'Designed to inspire and ease your navigation',
+  },
+};
 
 function ContactForm() {
+  const { language } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
@@ -14,11 +60,13 @@ function ContactForm() {
     setFormData({ name: '', email: '', message: '' });
   };
 
+  const t = formTranslations[language];
+
   if (submitted) {
     return (
       <div className="flex items-center gap-2 rounded-xl border border-jtr-mint/20 bg-jtr-mint/5 p-4 text-sm text-jtr-mint">
         <CheckCircle2 className="h-4 w-4" />
-        Message envoyé ! Nous vous répondrons bientôt.
+        {t.success}
       </div>
     );
   }
@@ -27,7 +75,7 @@ function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-3">
       <input
         type="text"
-        placeholder="Votre nom"
+        placeholder={t.name}
         value={formData.name}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         required
@@ -35,14 +83,14 @@ function ContactForm() {
       />
       <input
         type="email"
-        placeholder="Votre email"
+        placeholder={t.email}
         value={formData.email}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         required
         className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-blue-400/50 focus:bg-white/[0.07]"
       />
       <textarea
-        placeholder="Votre message"
+        placeholder={t.message}
         value={formData.message}
         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
         required
@@ -54,7 +102,7 @@ function ContactForm() {
         className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-[1.02]"
       >
         <Send className="h-3.5 w-3.5" />
-        Envoyer
+        {t.send}
       </button>
     </form>
   );
@@ -62,6 +110,8 @@ function ContactForm() {
 
 export default function Footer() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = footerTranslations[language];
 
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-ink-950/50">
@@ -79,27 +129,26 @@ export default function Footer() {
               <span className="text-sm font-bold text-white">Patrimoine</span>
             </div>
             <p className="mt-3 max-w-sm text-sm text-slate-400 leading-relaxed">
-              Décrivez, analysez et visualisez votre patrimoine
-              avec une approche holistique.
+              {t.desc}
             </p>
           </div>
 
           {/* Documentation */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Documentation
+              {t.doc}
             </h4>
             <ul className="mt-3 space-y-2">
               <li>
                 <Link to="/features" className="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-blue-300">
                   <BookOpen className="h-3.5 w-3.5" />
-                  Fonctionnalités
+                  {t.features}
                 </Link>
               </li>
               <li>
                 <Link to="/guide" className="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-blue-300">
                   <BookOpen className="h-3.5 w-3.5" />
-                  Guide d'utilisation
+                  {t.guide}
                 </Link>
               </li>
             </ul>
@@ -108,7 +157,7 @@ export default function Footer() {
           {/* Ressources */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Ressources
+              {t.resources}
             </h4>
             <ul className="mt-3 space-y-2">
               <li>
@@ -117,12 +166,12 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-blue-300"
                 >
                   <GitBranch className="h-3.5 w-3.5" />
-                  Dépôt source
+                  {t.repo}
                 </button>
               </li>
               <li>
                 <Link to="/" className="text-sm text-slate-400 transition-colors hover:text-blue-300">
-                  Accueil
+                  {t.home}
                 </Link>
               </li>
             </ul>
@@ -131,7 +180,7 @@ export default function Footer() {
           {/* Contact form */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Contact
+              {t.contact}
             </h4>
             <div className="mt-3">
               <ContactForm />
@@ -142,10 +191,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-slate-600">
-            Documentation Patrimoine · Contenu issu du projet source
+            {t.bottom1}
           </p>
           <p className="font-mono text-xs text-slate-600">
-            Conçu pour inspirer et faciliter votre navigation
+            {t.bottom2}
           </p>
         </div>
       </div>
