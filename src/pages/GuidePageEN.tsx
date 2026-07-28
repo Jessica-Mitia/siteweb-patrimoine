@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Copy, Check, ArrowRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Icon from '../components/Icon';
@@ -86,6 +86,17 @@ function CodeExample({ code, filename }: { code: string; filename?: string }) {
 
 export default function GuidePageEN() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <div className="container-doc animate-fade-in pt-24">
