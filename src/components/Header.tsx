@@ -21,7 +21,7 @@ export default function Header() {
 
   const localizedNavItems = [
     { id: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
-    { id: '/features', label: language === 'fr' ? 'Fonctionnalités' : 'Features' },
+    { id: '/features', label: language === 'fr' ? 'Outils & Technologies' : 'Tools & Technologies' },
     { id: '/guide', label: language === 'fr' ? 'Utilisation' : 'Usage' },
   ];
 
