@@ -13,6 +13,7 @@ interface SidebarProps {
 export default function Sidebar({ items, title }: SidebarProps) {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '');
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,9 +34,21 @@ export default function Sidebar({ items, title }: SidebarProps) {
     return () => observer.disconnect();
   }, [items]);
 
+  useEffect(() => {
+    if (sidebarRef.current && activeId) {
+      const activeElement = sidebarRef.current.querySelector(`[data-id="${activeId}"]`);
+      if (activeElement) {
+        activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }, [activeId]);
+
   return (
     <aside className="hidden w-56 shrink-0 lg:block">
-      <div className="sticky top-24 space-y-1">
+      <div 
+        ref={sidebarRef}
+        className="sticky top-24 space-y-1 max-h-[calc(100vh-7rem)] overflow-y-auto pb-4"
+      >
         {title && (
           <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
             {title}
@@ -44,6 +57,7 @@ export default function Sidebar({ items, title }: SidebarProps) {
         {items.map((item) => (
           <button
             key={item.id}
+            data-id={item.id}
             onClick={() => {
               const el = document.getElementById(item.id);
               if (el) el.scrollIntoView({ behavior: 'smooth' });
