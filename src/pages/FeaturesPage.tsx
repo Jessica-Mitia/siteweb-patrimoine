@@ -7,6 +7,8 @@ import Callout from '../components/Callout';
 import CodeBlock from '../components/CodeBlock';
 import Icon from '../components/Icon';
 import { POSSESSION_TYPES, AGREGAT_LABELS } from '../types/patrimoine';
+import { useLanguage } from '../hooks/useLanguage';
+import FeaturesPageEN from './FeaturesPageEN';
 
 const toc: TocItem[] = [
   { id: 'architecture', label: 'Architecture globale' },
@@ -31,11 +33,16 @@ function scrollToHash() {
 }
 
 export default function FeaturesPage() {
+  const { language } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
     scrollToHash();
   }, [location]);
+
+  if (language === 'en') {
+    return <FeaturesPageEN />;
+  }
 
   return (
     <div className="container-doc animate-fade-in pt-24">

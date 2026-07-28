@@ -6,6 +6,8 @@ import Icon from '../components/Icon';
 import Section from '../components/Section';
 import Sidebar, { type TocItem } from '../components/Sidebar';
 import Callout from '../components/Callout';
+import { useLanguage } from '../hooks/useLanguage';
+import GuidePageEN from './GuidePageEN';
 
 function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
@@ -85,7 +87,12 @@ function CodeExample({ code, filename }: { code: string; filename?: string }) {
 }
 
 export default function GuidePage() {
+  const { language } = useLanguage();
   const navigate = useNavigate();
+
+  if (language === 'en') {
+    return <GuidePageEN />;
+  }
 
   return (
     <div className="container-doc animate-fade-in pt-24">

@@ -5,20 +5,17 @@ import Logo from '../components/Logo';
 import Icon from '../components/Icon';
 import Reveal from '../components/Reveal';
 import { AGREGAT_LABELS, TypeAgregat } from '../types/patrimoine';
-import { useLanguage } from '../hooks/useLanguage';
-import HomePageEN from './HomePageEN';
 
 const CAPTURES = [
-  { src: '/patrimoine-capture1.png', alt: 'Capture 1 - Vue d\'ensemble du patrimoine' },
-  { src: '/patrimoine-capture2.png', alt: 'Capture 2 - Spécification du patrimoine' },
-  { src: '/patrimoine-capture3.png', alt: 'Capture 3 - Graphes d\'évolution' },
-  { src: '/patrimoine-capture4.png', alt: 'Capture 4 - Analyse des agrégats' },
-  { src: '/patrimoine-capture5.png', alt: 'Capture 5 - Tableau de bord' },
+  { src: '/patrimoine-capture1.png', alt: 'Capture 1 - Overview of assets' },
+  { src: '/patrimoine-capture2.png', alt: 'Capture 2 - Asset specification' },
+  { src: '/patrimoine-capture3.png', alt: 'Capture 3 - Evolution graphs' },
+  { src: '/patrimoine-capture4.png', alt: 'Capture 4 - Aggregates analysis' },
+  { src: '/patrimoine-capture5.png', alt: 'Capture 5 - Dashboard' },
 ];
 const AUTO_INTERVAL = 4000;
 
-export default function HomePage() {
-  const { language } = useLanguage();
+export default function HomePageEN() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const total = CAPTURES.length;
@@ -43,10 +40,6 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, [next, current]);
 
-  if (language === 'en') {
-    return <HomePageEN />;
-  }
-
   return (
     <div className="animate-fade-in">
       {/* Hero */}
@@ -66,13 +59,13 @@ export default function HomePage() {
 
             {/* Title with staggered reveal */}
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Votre richesse, ce n'est pas votre salaire.<br />
-              <span className="text-gradient inline-block animate-fade-up delay-200">C'est votre patrimoine.</span>
+              Your wealth is not your salary.<br />
+              <span className="text-gradient inline-block animate-fade-up delay-200">It's your assets.</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base text-slate-400 leading-relaxed animate-fade-up delay-300 sm:text-lg">
-              Décrivez, analysez et visualisez l'ensemble de vos possessions en une seule
-              approche cohérente. Comptes, biens, dettes, créances , tout est modélisé
-              pour vous donner une vision complète de votre situation financière.
+              Describe, analyze, and visualize all your possessions in a single,
+              coherent approach. Accounts, goods, debts, receivables—everything is modeled
+              to give you a complete view of your financial situation.
             </p>
 
             {/* CTAs */}
@@ -82,19 +75,19 @@ export default function HomePage() {
                 className="group relative flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/50 hover:scale-105"
               >
                 <BookOpen className="h-4 w-4" />
-                Commencer maintenant
+                Get Started Now
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/features"
                 className="group relative flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-300 transition-all duration-300 hover:border-blue-400/30 hover:bg-white/10 hover:text-white"
               >
-                Explorer les fonctionnalités
+                Explore Features
               </Link>
             </div>
           </div>
 
-          {/* Carousel auto-avancé avec captures */}
+          {/* Auto-advanced carousel with captures */}
           <div className="mt-48 reveal revealed">
             <div className="capture-carousel relative mx-auto max-w-4xl">
               <div className="capture-stage relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900/80 backdrop-blur-sm shadow-2xl shadow-blue-500/10">
@@ -120,24 +113,24 @@ export default function HomePage() {
                 {/* Label */}
                 <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between">
                   <span className="rounded-lg bg-blue-500/20 px-3 py-1.5 text-xs font-semibold text-blue-200 backdrop-blur-sm">
-                    Capture {current + 1} / {total}
+                    Screenshot {current + 1} / {total}
                   </span>
                   <span className="text-xs text-slate-400">{CAPTURES[current].alt}</span>
                 </div>
               </div>
 
-              {/* Flèches navigation */}
+              {/* Navigation arrows */}
               <button
                 onClick={prev}
                 className="capture-arrow capture-arrow-left"
-                aria-label="Capture précédente"
+                aria-label="Previous screenshot"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={next}
                 className="capture-arrow capture-arrow-right"
-                aria-label="Capture suivante"
+                aria-label="Next screenshot"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -149,7 +142,7 @@ export default function HomePage() {
                     key={i}
                     onClick={() => goTo(i)}
                     className={`capture-dot ${i === current ? 'capture-dot-active' : ''}`}
-                    aria-label={`Aller à la capture ${i + 1}`}
+                    aria-label={`Go to screenshot ${i + 1}`}
                   />
                 ))}
               </div>
@@ -161,11 +154,10 @@ export default function HomePage() {
       {/* Four features - clickable cards */}
       <section className="container-doc py-16">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="section-eyebrow">Vue d'ensemble</span>
-          <h2 className="section-title">Quatre piliers pour maîtriser votre patrimoine</h2>
+          <span className="section-eyebrow">Overview</span>
+          <h2 className="section-title">Four pillars to master your assets</h2>
           <p className="section-subtitle mx-auto">
-            Quatre fonctionnalités essentielles pour raisonner sur l'ensemble
-            de vos possessions et anticiper leur évolution.
+            Four essential features to reason about all your possessions and anticipate their evolution.
           </p>
         </Reveal>
 
@@ -182,7 +174,7 @@ export default function HomePage() {
                 <h3 className="text-base font-semibold text-white">{f.title}</h3>
                 <p className="mt-2 text-sm text-slate-400 leading-relaxed">{f.description}</p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ color: f.color }}>
-                  Découvrir
+                  Discover
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
@@ -194,19 +186,18 @@ export default function HomePage() {
       {/* Aggregate types */}
       <section className="container-doc py-16">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="section-eyebrow">Modèle</span>
-          <h2 className="section-title">Les trois agrégats de votre patrimoine</h2>
+          <span className="section-eyebrow">Model</span>
+          <h2 className="section-title">The three aggregates of your assets</h2>
           <p className="section-subtitle mx-auto">
-            Vos possessions sont organisées en trois grands groupes pour une
-            analyse claire.
+            Your possessions are organized into three main groups for clear analysis.
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
-            { agregat: TypeAgregat.TRESORERIE, title: 'Trésorerie', desc: 'L\'argent disponible immédiatement. Comptes courants, épargne, espèces. L\'agrégat le plus liquide — c\'est ce que vous pouvez utiliser tout de suite.' },
-            { agregat: TypeAgregat.IMMOBILISATION, title: 'Immobilisations', desc: 'Vos biens matériels et immatériels. Maison, voiture, logiciel — avec une valeur économique mais moins liquides. Il faut les vendre ou les louer pour en tirer profit.' },
-            { agregat: TypeAgregat.OBLIGATION, title: 'Obligations', desc: 'Ce que vous devez (dettes) et ce que les autres vous doivent (créances). Les dettes réduisent votre patrimoine, les créances l\'augmentent.' },
+            { agregat: TypeAgregat.TRESORERIE, title: 'Cash & Treasury', desc: 'Immediately available money. Checking accounts, savings, cash. The most liquid aggregate—what you can use right away.' },
+            { agregat: TypeAgregat.IMMOBILISATION, title: 'Fixed Assets', desc: 'Your tangible and intangible assets. House, car, software—having economic value but less liquid. They must be sold or rented to generate profit.' },
+            { agregat: TypeAgregat.OBLIGATION, title: 'Obligations & Liabilities', desc: 'What you owe (debts) and what others owe you (receivables). Debts reduce your assets, receivables increase them.' },
           ].map((item, i) => {
             const meta = AGREGAT_LABELS[item.agregat];
             return (
@@ -229,8 +220,8 @@ export default function HomePage() {
         <Reveal className="mx-auto max-w-4xl">
           <div className="card-float p-8 sm:p-12" style={{ borderColor: 'rgba(223,164,8,0.15)' }}>
             <Reveal className="text-center">
-              <span className="section-eyebrow" style={{ backgroundImage: 'linear-gradient(135deg, #dfa408, #f5cc5e)' }}>Pourquoi Patrimoine ?</span>
-              <h2 className="section-title mt-4 text-3xl sm:text-4xl">Votre patrimoine mérite mieux qu'un tableur</h2>
+              <span className="section-eyebrow" style={{ backgroundImage: 'linear-gradient(135deg, #dfa408, #f5cc5e)' }}>Why Patrimoine?</span>
+              <h2 className="section-title mt-4 text-3xl sm:text-4xl">Your assets deserve better than a spreadsheet</h2>
             </Reveal>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -254,7 +245,7 @@ export default function HomePage() {
                 to="/guide"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/50 hover:scale-105"
               >
-                Suivre le guide d'utilisation
+                Follow the User Guide
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Reveal>
@@ -269,40 +260,38 @@ export default function HomePage() {
 const FEATURES = [
   {
     icon: 'clipboard-list',
-    title: 'Spécifier',
-    description: 'Décrivez votre patrimoine à un instant précis : comptes bancaires, biens matériels, dettes, créances et flux d\'argent récurrents.',
+    title: 'Specify',
+    description: 'Describe your assets at a specific moment: bank accounts, physical goods, debts, receivables, and recurring cash flows.',
     color: '#3b82f6',
     link: '/guide#specifier-patrimoine',
   },
   {
     icon: 'trending-up',
-    title: 'Projeter',
-    description: 'Visualisez l\'évolution future de votre patrimoine sur une période donnée grâce à des graphiques configurables.',
+    title: 'Project',
+    description: 'Visualize the future evolution of your assets over a given period through configurable charts.',
     color: '#2563eb',
     link: '/guide#projeter-patrimoine',
   },
   {
     icon: 'refresh-cw',
-    title: 'Recouper',
-    description: 'Comparez les opérations planifiées avec celles réellement réalisées et ajustez votre spécification en conséquence.',
+    title: 'Reconcile',
+    description: 'Compare planned transactions with actual ones and adjust your specification accordingly.',
     color: '#fbbf24',
     link: '/guide#recouper-patrimoine',
   },
   {
     icon: 'alert-triangle',
-    title: 'Alerter',
-    description: 'Détectez automatiquement les flux impossibles : opérations qui feraient passer un compte en solde négatif.',
+    title: 'Alert',
+    description: 'Automatically detect impossible flows: transactions that would make an account balance go negative.',
     color: '#f87171',
     link: '/guide#alerter-patrimoine',
   },
 ];
 
 const WHY_PATRIMOINE = [
-  { icon: Globe, title: 'Approche holistique', desc: 'Raisonnez sur l\'ensemble de vos possessions en une seule vue, pas fragmentée par compte.', color: '#60a5fa' },
-  { icon: TrendingUp, title: 'Projections temporelles', desc: 'Visualisez l\'évolution de votre patrimoine sur les mois et années à venir.', color: '#2dd4bf' },
-  { icon: Shield, title: 'Détection d\'alertes', desc: 'Soyez averti avant qu\'un compte ne passe en négatif grâce à la politique ZFI.', color: '#f43f7a' },
-  { icon: RefreshCw, title: 'Recoupement réel', desc: 'Comparez votre plan avec la réalité et corrigez les écarts pour rester à jour (ZFJA).', color: '#fbbf24' },
-  { icon: FileText, title: 'DSL dédié PatriLang', desc: 'Décrivez votre patrimoine en langage naturel, sans écrire de code Java.', color: '#a78bfa' },
+  { icon: Globe, title: 'Holistic approach', desc: 'Reason about all your possessions in a single view, not fragmented by account.', color: '#60a5fa' },
+  { icon: TrendingUp, title: 'Temporal projections', desc: 'Visualize the evolution of your assets over the coming months and years.', color: '#2dd4bf' },
+  { icon: Shield, title: 'Alert detection', desc: 'Be warned before an account goes negative thanks to the ZFI policy.', color: '#f43f7a' },
+  { icon: RefreshCw, title: 'Real reconciliation', desc: 'Compare your plan with reality and correct discrepancies to stay up to date (ZFJA).', color: '#fbbf24' },
+  { icon: FileText, title: 'Dedicated PatriLang DSL', desc: 'Describe your assets in natural language, without writing Java code.', color: '#a78bfa' },
 ];
-
-
