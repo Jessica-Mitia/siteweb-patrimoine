@@ -82,7 +82,7 @@ export default function HomePageEN() {
                 to="/features"
                 className="group relative flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-300 transition-all duration-300 hover:border-blue-400/30 hover:bg-white/10 hover:text-white"
               >
-                Explore Features
+                Explore Tools & Technologies
               </Link>
             </div>
           </div>

@@ -25,7 +25,7 @@ const footerTranslations = {
   fr: {
     desc: 'Décrivez, analysez et visualisez votre patrimoine avec une approche holistique.',
     doc: 'Documentation',
-    features: 'Fonctionnalités',
+    features: 'Outils & Technologies',
     guide: "Guide d'utilisation",
     resources: 'Ressources',
     repo: 'Dépôt source',
@@ -37,7 +37,7 @@ const footerTranslations = {
   en: {
     desc: 'Describe, analyze, and visualize your assets with a holistic approach.',
     doc: 'Documentation',
-    features: 'Features',
+    features: 'Tools & Technologies',
     guide: 'User Guide',
     resources: 'Resources',
     repo: 'Source Repository',

@@ -66,12 +66,12 @@ export default function FeaturesPageEN() {
   return (
     <div className="container-doc animate-fade-in pt-24">
       <div className="flex gap-10">
-        <Sidebar items={toc} title="Features · Summary" />
+        <Sidebar items={toc} title="Tools & Technologies · Summary" />
         <div className="min-w-0 flex-1 max-w-3xl">
           <div className="relative mb-4">
             <div className="relative">
               <div className="flex items-center gap-2">
-                <span className="section-eyebrow"><Code2 className="h-4 w-4" />Technical stack & features</span>
+                <span className="section-eyebrow"><Code2 className="h-4 w-4" />Technical stack & tools</span>
               </div>
               <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Technical Stack

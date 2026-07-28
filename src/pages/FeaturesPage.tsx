@@ -47,12 +47,12 @@ export default function FeaturesPage() {
   return (
     <div className="container-doc animate-fade-in pt-24">
       <div className="flex gap-10">
-        <Sidebar items={toc} title="Fonctionnalités · Sommaire" />
+        <Sidebar items={toc} title="Outils & Technologies · Sommaire" />
         <div className="min-w-0 flex-1 max-w-3xl">
           <div className="relative mb-4">
             <div className="relative">
               <div className="flex items-center gap-2">
-                <span className="section-eyebrow"><Code2 className="h-4 w-4" />Stack technique & fonctionnalités</span>
+                <span className="section-eyebrow"><Code2 className="h-4 w-4" />Stack technique & outils</span>
               </div>
               <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
                 Stack technique
