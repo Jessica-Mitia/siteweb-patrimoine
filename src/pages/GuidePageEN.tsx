@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Copy, Check, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Copy, Check } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Icon from '../components/Icon';
 import Section from '../components/Section';
@@ -86,7 +86,7 @@ function CodeExample({ code, filename }: { code: string; filename?: string }) {
 }
 
 export default function GuidePageEN() {
-  const navigate = useNavigate();
+
   const location = useLocation();
 
   useEffect(() => {
@@ -886,13 +886,7 @@ Rakoto   https://drive.google.com/file/d/VVVVVVVVVVVVVVVV/view?usp=drive_link`} 
                 >
                   Review Tools & Technologies
                 </Link>
-                <button
-                  onClick={() => navigate('/auth')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/50 hover:scale-105"
-                >
-                  View Source Code
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+
               </div>
             </div>
           </Reveal>
