@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Copy, Check, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Copy, Check } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Icon from '../components/Icon';
 import Section from '../components/Section';
@@ -28,6 +28,7 @@ function CopyButton({ code }: { code: string }) {
 
 const toc: TocItem[] = [
   { id: 'vue-ensemble', label: 'Vue d\'ensemble' },
+  { id: 'premiers-pas', label: 'Premiers pas' },
   { id: 'comptabilite', label: 'Comptabilité' },
   { id: 'graphes-visualisation', label: 'Graphes & visualisation' },
   { id: 'specifier-patrimoine', label: 'Spécifier son patrimoine' },
@@ -45,7 +46,7 @@ const toc: TocItem[] = [
   { id: 'recouper-patrimoine', label: 'Recouper' },
   { id: 'alerter-patrimoine', label: 'Alerter' },
   { id: 'devises', label: 'Devises supportées' },
-  { id: 'tout-cas', label: 'Cas multiple (ToutCas)' },
+  { id: 'types-fichier', label: 'Types de fichier' },
   { id: 'glossaire', label: 'Glossaire' },
 ];
 
@@ -88,7 +89,7 @@ function CodeExample({ code, filename }: { code: string; filename?: string }) {
 
 export default function GuidePage() {
   const { language } = useLanguage();
-  const navigate = useNavigate();
+
   const location = useLocation();
 
   useEffect(() => {
@@ -153,6 +154,118 @@ export default function GuidePage() {
                 <p className="mt-1 text-xs text-slate-400">Détecter les flux impossibles : opérations qui feraient passer un compte en négatif.</p>
               </div>
             </div>
+          </Section>
+
+          {/* ======== PREMIERS PAS ======== */}
+          <Section id="premiers-pas" eyebrow="Quick start" title="Premiers pas — Créer votre premier cas">
+            <p>
+              Dans cette section, nous allons créer un cas simple ("Rakoto") en 4 étapes.
+              À la fin, vous pourrez le visualiser et le modifier directement dans Patrimoine.
+            </p>
+
+            <h3>Étape 1 — Créer un dossier Google Drive</h3>
+            <ol className="list-decimal space-y-2 pl-5 text-sm text-slate-400">
+              <li>Créez un dossier (par exemple "Patrimoine - Rakoto") sur Google Drive.</li>
+              <li>À l'intérieur, créez 3 sous-dossiers : <code className="inline-code">planifies</code>, <code className="inline-code">realises</code> et <code className="inline-code">justificatifs</code>.</li>
+              <li>Déposez-y les fichiers texte ci-dessous, en respectant exactement leur nom et leur emplacement.</li>
+            </ol>
+            <CodeExample code={`Patrimoine - Rakoto/
+├── planifies/
+│   ├── CasSet.tout.md
+│   └── Rakoto.cas.md
+├── realises/
+│   ├── CasSet.tout.md
+│   └── Rakoto.cas.md
+└── justificatifs/
+    └── Rakoto.pj.md`} />
+            <p className="mt-4 text-sm text-slate-400">
+              Le dossier <code className="inline-code">planifies/</code> contient le scénario théorique, tandis que <code className="inline-code">realises/</code> contient la version ajustée à la réalité (pour ce tutoriel, les fichiers peuvent rester identiques au départ). Le dossier <code className="inline-code">justificatifs/</code> contient les pièces justificatives. Notez que le fichier <code className="inline-code">CasSet.tout.md</code> doit être dupliqué à l'identique dans <code className="inline-code">planifies/</code> ET <code className="inline-code">realises/</code>.
+            </p>
+
+            <h3>Étape 2 — Créer les 3 fichiers</h3>
+            <CodeExample filename="planifies/CasSet.tout.md (à dupliquer dans realises/)" code={`# Général
+\`/* Objectif final : trésorerie du compte personnel de Rakoto à la fin de la simulation */\`
+* Objectif final 3429616Ar
+
+# Cas
+* Rakoto
+
+# Dates
+* Dates:ajd: le 05 du 03-2025
+* Dates:finSimulation: le 05 du 09-2025
+
+# Personnes
+* Rakoto
+
+# Trésoreries
+* compteRakoto, valant 0Ar Dates:ajd`} />
+
+            <CodeExample filename="planifies/Rakoto.cas.md (à dupliquer dans realises/)" code={`# Général
+* Spécifier Dates:ajd
+* Fin de simulation Dates:finSimulation
+* Cas de Rakoto
+* Devise en Ar
+
+# Possesseurs
+* Personnes:Rakoto 100%
+
+# Trésoreries
+* Trésoreries:compteRakoto
+
+# Initialisation
+* \`objectifInitCompteRakoto\` Dates:ajd, objectif de 200000Ar pour Trésoreries:compteRakoto
+* \`initCompteRakoto\` Dates:ajd, entrer 200000Ar vers Trésoreries:compteRakoto
+
+# Opérations
+## TrainDeVie, Dates:ajd, devise en Ar
+* \`abonnementInternet\` Dates:ajd, sortir 30000Ar depuis Trésoreries:compteRakoto, jusqu'à date indéterminée tous les 12 du mois
+* \`loyer\` Dates:ajd, sortir 150000Ar depuis Trésoreries:compteRakoto, jusqu'à date indéterminée tous les 1 du mois
+* \`monTelephone\` le 10 mars 2025, posséder téléphone, valant 800000Ar obtenu le 10 mars 2025, s'appréciant annuellement de 5%
+## SalaireMensuel, Dates:ajd, devise en Ar
+* \`salaireMensuel\` Dates:ajd, entrer 500000Ar vers Trésoreries:compteRakoto, jusqu'à date indéterminée tous les 28 du mois
+# Suivi
+* \`correctionMars\` le 31 du 03-2025, corriger 490000Ar dans Trésoreries:compteRakoto`} />
+
+            <CodeExample filename="justificatifs/Rakoto.pj.md" code={`# Général
+* Spécifier le 31 mars 2025
+* Cas de Rakoto
+
+# Pièces Justificatives
+* \`salaireMensuel__du_2025_03_28\`, le 28 mars 2025, REF-SALAIRE-001, "https://example.com/salaire-mars.pdf"
+* \`loyer__du_2025_03_01\`, le 01 mars 2025, REF-LOYER-001, "https://example.com/loyer-mars.pdf"`} />
+
+            <h3>Étape 3 — Récupérer les liens de partage</h3>
+            <p>
+              Pour chacun des 5 fichiers déposés sur Google Drive (les 2 <code className="inline-code">CasSet.tout.md</code>, les 2 <code className="inline-code">Rakoto.cas.md</code> et le <code className="inline-code">Rakoto.pj.md</code>), faites un clic droit puis sélectionnez <strong>"Partager"</strong> et <strong>"Copier le lien"</strong>.
+              Assurez-vous que l'accès général est réglé sur <strong>"Tous les utilisateurs disposant du lien"</strong> avec le rôle <strong>"Éditeur"</strong> pour permettre la synchronisation des modifications directement sur Google Drive.
+            </p>
+
+            <h3>Étape 4 — Connecter les fichiers dans Patrimoine</h3>
+            <p>
+              Dans l'application Patrimoine, sur l'écran "Soumettre vos liens Google", vous trouverez 3 zones distinctes : "Liens vers les journaux planifiés", "Liens vers les journaux réalisés" et "Liens vers les pièces justificatives". Dans chaque zone, indiquez le nom du cas suivi de son lien Google Drive (séparés par un espace, une ligne par fichier).
+            </p>
+            <CodeExample code={`Zone "Liens vers les journaux planifiés" :
+Rakoto   https://drive.google.com/file/d/XXXXXXXXXXXXXXXX/view?usp=drive_link
+CasSet   https://drive.google.com/file/d/YYYYYYYYYYYYYYYY/view?usp=drive_link
+
+Zone "Liens vers les journaux réalisés" :
+Rakoto   https://drive.google.com/file/d/ZZZZZZZZZZZZZZZZ/view?usp=drive_link
+CasSet   https://drive.google.com/file/d/WWWWWWWWWWWWWWWW/view?usp=drive_link
+
+Zone "Liens vers les pièces justificatives" :
+Rakoto   https://drive.google.com/file/d/VVVVVVVVVVVVVVVV/view?usp=drive_link`} />
+            <Callout variant="warning" title="Le nom doit correspondre exactement">
+              Le nom indiqué avant chaque lien (ici "Rakoto" ou "CasSet") doit correspondre exactement au nom déclaré dans le fichier lui-même — "Cas de Rakoto" pour les .cas.md/.pj.md, "CasSet" pour le .tout.md — sinon Patrimoine ne peut pas faire le lien. Une fois toutes les lignes remplies, cliquez sur "Envoyer".
+            </Callout>
+
+            <h3>Étape 5 — Jouer avec le cas</h3>
+            <Callout variant="tip" title="Et ensuite ?">
+              Une fois les liens connectés, vous pouvez utiliser les boutons de l'interface Patrimoine pour visualiser le graphe d'évolution et modifier directement le contenu des fichiers. Ces modifications se synchronisent automatiquement avec les fichiers correspondants sur Google Drive, sans avoir à re-uploader manuellement.
+            </Callout>
+
+            <p className="mt-6">
+              Pour approfondir la logique des fichiers <code className="inline-code">.tout.md</code>, <code className="inline-code">.cas.md</code> et <code className="inline-code">.pj.md</code>, consultez la section <TermLink term="Types de fichier" section="types-fichier" />.
+            </p>
           </Section>
 
           {/* ======== COMPTABILITÉ ======== */}
@@ -673,45 +786,8 @@ export default function GuidePage() {
             </Callout>
           </Section>
 
-          {/* ======== TOUT CAS ======== */}
-          <Section id="tout-cas" eyebrow="Avancé" title="Assembler plusieurs cas (ToutCas)">
-            <p>
-              Vous pouvez combiner plusieurs cas individuels dans un fichier
-              <code className="inline-code">.tout.md</code> pour simuler un patrimoine
-              complexe impliquant plusieurs personnes et comptes.
-            </p>
-            <CodeExample filename="Famille.tout.md" code={`# Général
-* Objectif final 4884000Ar
-
-# Cas
-* PatrimoinePersonnel
-* LocationMaison
-
-# Dates
-* Dates:ajd: le 10 du 01-2025
-* Dates:finSimulation: le 10 du 04-2025
-
-# Personnes
-* Zety
-* Lita
-* Rasoa
-
-# Trésoreries
-* comptePrincipal, valant 0Ar Dates:ajd
-* compteSecondaire, valant 0Ar Dates:ajd
-
-# Créances
-* creanceClient, valant 0Ar Dates:ajd
-
-# Dettes
-* detteBanque, valant 0Ar Dates:ajd`} />
-            <p>
-              Le fichier <code className="inline-code">.tout.md</code> sert de point
-              d'entrée : il définit les dates communes, énumère les cas inclus, les
-              personnes concernées et les comptes partagés entre les cas.
-            </p>
-
-            <h3 className="mt-6 text-lg font-bold text-primary">Les trois types de fichiers</h3>
+          {/* ======== TYPES DE FICHIER ======== */}
+          <Section id="types-fichier" eyebrow="Types de fichier" title="Les trois types de fichiers">
             <div className="my-4 grid gap-4 sm:grid-cols-3">
               <div className="card card-hover p-4">
                 <span className="font-mono text-sm font-semibold text-blue-300">.cas.md</span>
@@ -836,13 +912,7 @@ export default function GuidePage() {
                 >
                   Revoir les outils & technologies
                 </Link>
-                <button
-                  onClick={() => navigate('/auth')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/50 hover:scale-105"
-                >
-                  Voir le code source
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+
               </div>
             </div>
           </Reveal>

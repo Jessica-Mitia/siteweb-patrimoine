@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, GitBranch, ChevronRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronRight, Sun, Moon } from 'lucide-react';
 import Logo from './Logo';
 import NavItem from './NavItem';
 import { useLanguage } from '../hooks/useLanguage';
@@ -108,13 +108,7 @@ export default function Header() {
             />
           ))}
 
-          <button
-            onClick={() => handleNav('/auth')}
-            className="relative z-10 ml-2 flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-400 transition-all duration-300 hover:border-blue-400/40 hover:text-white hover:bg-white/10 hover:shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)]"
-          >
-            <GitBranch className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
-            <span>Repo</span>
-          </button>
+
 
           {/* Theme Toggle */}
           <button
@@ -177,17 +171,7 @@ export default function Header() {
                 <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${location.pathname === item.id ? 'translate-x-1 text-blue-400' : 'opacity-50'}`} />
               </button>
             ))}
-            <button
-              onClick={() => handleNav('/auth')}
-              className="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-slate-400 transition-all duration-300 animate-slide-in-left hover:bg-white/5 hover:text-white"
-              style={{ animationDelay: `${3 * 60}ms` }}
-            >
-              <span className="flex items-center gap-2">
-                <GitBranch className="h-4 w-4" />
-                Repo
-              </span>
-              <ChevronRight className="h-4 w-4 opacity-50" />
-            </button>
+
 
             {/* Mobile Language Toggle */}
             <div

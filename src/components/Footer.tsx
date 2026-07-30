@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { GitBranch, BookOpen, Send, CheckCircle2 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { BookOpen, Send, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -109,7 +109,7 @@ function ContactForm() {
 }
 
 export default function Footer() {
-  const navigate = useNavigate();
+
   const { language } = useLanguage();
   const t = footerTranslations[language];
 
@@ -160,15 +160,7 @@ export default function Footer() {
               {t.resources}
             </h4>
             <ul className="mt-3 space-y-2">
-              <li>
-                <button
-                  onClick={() => navigate('/auth')}
-                  className="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-blue-300"
-                >
-                  <GitBranch className="h-3.5 w-3.5" />
-                  {t.repo}
-                </button>
-              </li>
+
               <li>
                 <Link to="/" className="text-sm text-slate-400 transition-colors hover:text-blue-300">
                   {t.home}
